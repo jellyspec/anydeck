@@ -1,0 +1,46 @@
+#!/bin/bash
+
+alias sudo=time
+
+. functions
+
+# string, file, count
+assert_in_file() {
+  COUNT="$(grep -F "$1" "$2" | wc -l | awk '{print $1}')"
+  if [ "$COUNT" -ne "$3" ]; then
+    echo "$4: Expected to find string \"$1\" in file \"$2\" $3 times, found $COUNT" >&2
+    echo "CONTENTS:" >&2
+    cat "$2" >&2
+    rm "$FILE"
+    exit 1
+  fi
+}
+
+test_write_if_missing() {
+  FILE="$(mktemp)"
+  echo "test content" >> "$FILE"
+  write_if_missing "$1" "$FILE"
+  write_if_missing "$1" "$FILE"
+  write_if_missing "$1" "$FILE"
+  write_if_missing "$1" "$FILE"
+  assert_in_file "$1" "$FILE" 1 "write_if_missing"
+  rm "$FILE"
+}
+
+test_append_if_missing() {
+  FILE="$(mktemp)"
+  echo "test content" >> "$FILE"
+  append_if_missing "$1" "$FILE"
+  append_if_missing "$1" "$FILE"
+  append_if_missing "$1" "$FILE"
+  append_if_missing "$1" "$FILE"
+  assert_in_file "$1" "$FILE" 1 "append_if_missing"
+  rm "$FILE"
+}
+
+test_write_if_missing "okay"
+test_write_if_missing "echo 'dtoverlay=gpio-shutdown,gpio_pin=17,active_low=1,gpio_pull=up,debounce=1000'"
+test_append_if_missing "okay"
+test_append_if_missing "a full complex set of key=value pairs=ok"
+
+exit 0

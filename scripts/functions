@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Add a line to the file $2 containing string $1 if not found in the file
+write_if_missing() {
+  if ! grep -Fq "$1" "$2"; then
+    sh -c "echo \"$1\" >> $2"
+  fi
+}
+
+# Append the contents $1 to the first line of file $2 if not found
+append_if_missing() {
+  if ! grep -Fq "$1" "$2"; then
+    sh -c "sed 's/\$/ $1/' \"$2\" | tee \"$2\" >/dev/null"
+  fi
+}
