@@ -9,8 +9,9 @@ sudo apt-get install openbox deskflow uhubctl
 
 # disable bloat
 sudo systemctl disable NetworkManager
-echo 'dtoverlay=disable-bt' >> $BOOT_CONFIG
-echo 'disable_splash=1' >> $BOOT_CONFIG
+sudo sh -c "echo 'dtoverlay=disable-bt' >> $BOOT_CONFIG"
+sudo sh -c "echo 'disable_splash=1' >> $BOOT_CONFIG"
+# console=serial0,115200 console=tty1 root=PARTUUID=50a1fd48-02 rootfstype=ext4 fsck.repair=yes rootwait cfg80211.ieee80211_regdom=US
 sudo sh -c "sed 's/$/ quiet fastboot loglevel=3/' $BOOT_CMDLINE > $BOOT_CMDLINE"
 
 # Create system on / off button
