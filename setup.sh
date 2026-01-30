@@ -17,6 +17,11 @@ sudo sh -c "sed 's/$/ quiet fastboot loglevel=3/p' $BOOT_CMDLINE > $BOOT_CMDLINE
 # Create system on / off button
 sudo sh -c "echo 'dtoverlay=gpio-shutdown,gpio_pin=17,active_low=1,gpio_pull=up,debounce=1000' >> $BOOT_CONFIG"
 
+# autologin to tty1
+sudo mkdir -p /etc/systemd/system/getty@tty1.service.d/
+sudo sh -c 'echo "[Service]" >> /etc/systemd/system/getty@tty1.service.d/override.conf'
+sudo sh -c 'echo "ExecStart=-/sbin/agetty --autologin alyxx --noclear %I \$TERM" >> /etc/systemd/system/getty@tty1.service.d/override.conf'
+
 # Copy configs
 cp -r home/.* $HOME/
 chmod a+x ~/.xinitrc
