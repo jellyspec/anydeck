@@ -5,17 +5,17 @@ BOOT_CONFIG="$BOOT_CONFIG_DIR/config.txt"
 BOOT_CMDLINE="$BOOT_CONFIG_DIR/cmdline.txt"
 
 # install packages
-sudo apt-get install openbox deskflow uhubctl
+sudo apt-get install openbox deskflow uhubctl xorg mixxx
 
 # disable bloat
 sudo systemctl disable NetworkManager
 sudo sh -c "echo 'dtoverlay=disable-bt' >> $BOOT_CONFIG"
 sudo sh -c "echo 'disable_splash=1' >> $BOOT_CONFIG"
 # console=serial0,115200 console=tty1 root=PARTUUID=50a1fd48-02 rootfstype=ext4 fsck.repair=yes rootwait cfg80211.ieee80211_regdom=US
-sudo sh -c "sed 's/$/ quiet fastboot loglevel=3/' $BOOT_CMDLINE > $BOOT_CMDLINE"
+sudo sh -c "sed 's/$/ quiet fastboot loglevel=3/p' $BOOT_CMDLINE > $BOOT_CMDLINE"
 
 # Create system on / off button
-echo 'dtoverlay=gpio-shutdown,gpio_pin=17,active_low=1,gpio_pull=up,debounce=1000' >> $BOOT_CONFIG
+sudo sh -c "echo 'dtoverlay=gpio-shutdown,gpio_pin=17,active_low=1,gpio_pull=up,debounce=1000' >> $BOOT_CONFIG"
 
 # Copy configs
 cp -r home/.* $HOME/
