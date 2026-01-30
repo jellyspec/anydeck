@@ -33,7 +33,8 @@ sudo write_if_missing "ExecStart=" "$SERVICE_DIR/override.conf"
 sudo write_if_missing "ExecStart=-/sbin/agetty --autologin alyxx --noclear %I \$TERM" "$SERVICE_DIR/override.conf"
 
 # Link configs
-for path in "$(ls -a1 home)"; do
+HOME_CONFIGS_DIR="$(pwd)/../home"
+for path in "$(ls -a1 \"$HOME_CONFIGS_DIR\")"; do
   test -f "${HOME}/${path}" && rm "${HOME}/${path}"
-  ln -s "$(pwd)/${path}" "${HOME}/${path}"
+  ln -s "${HOME_CONFIGS_DIR}/${path}" "${HOME}/${path}"
 fi
