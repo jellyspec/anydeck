@@ -41,5 +41,6 @@ write_if_missing "ExecStart=-/sbin/agetty --autologin alyxx --noclear %I \$TERM"
 HOME_CONFIGS_DIR="$(pwd)/../home"
 for path in "$(ls -a1 \"$HOME_CONFIGS_DIR\")"; do
   test -f "${HOME}/${path}" && rm "${HOME}/${path}"
+  test -d "${HOME}/${path}" && rm -rf "${HOME}/${path}"
   ln -s "${HOME_CONFIGS_DIR}/${path}" "${HOME}/${path}"
-fi
+done
