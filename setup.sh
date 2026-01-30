@@ -1,8 +1,8 @@
 #!/bin/sh
 
-$BOOT_CONFIG_DIR=/boot/firmware
-$BOOT_CONFIG=$BOOT_CONFIG_DIR/config.txt
-$BOOT_CMDLINE=$BOOT_CONFIG_DIR/cmdline.txt
+BOOT_CONFIG_DIR=/boot/firmware
+BOOT_CONFIG="$BOOT_CONFIG_DIR/config.txt"
+BOOT_CMDLINE="$BOOT_CONFIG_DIR/cmdline.txt"
 
 # install packages
 sudo apt-get install openbox deskflow uhubctl
