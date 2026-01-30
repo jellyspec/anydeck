@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <MixxxControllerPreset mixxxVersion="2.3" schemaVersion="1">
     <info>
-        <name>Pioneer DDJ-FLX4 (no crossfader)</name>
+        <name>Pioneer DDJ-FLX4 (anydeck)</name>
         <author>Robert904</author>
         <description>Midi Mapping for the Pioneer DDJ-FLX4 (based on DDJ-400 mapping)</description>
         <forums>https://mixxx.discourse.group/t/pioneer-ddj-flx4</forums>
@@ -596,7 +596,7 @@
             <control>
                 <group>[QuickEffectRack1_[Channel1]]</group>
                 <key>super1</key>
-                <description>FILTER CH1 - rotate - Filter Effect Knob</description>
+                <description>FILTER CH1 - rotate - Filter Effect Knob.</description>
                 <status>0xB6</status>
                 <midino>0x17</midino>
                 <options>
@@ -606,7 +606,7 @@
             <control>
                 <group>[QuickEffectRack1_[Channel2]]</group>
                 <key>super1</key>
-                <description>FILTER CH2 - rotate - Filter Effect Knob</description>
+                <description>FILTER CH2 - rotate - Filter Effect Knob.</description>
                 <status>0xB6</status>
                 <midino>0x18</midino>
                 <options>
@@ -1450,7 +1450,7 @@
             <control>
                 <group>[QuickEffectRack1_[Channel1]]</group>
                 <key>super1</key>
-                <description>FILTER CH1 - rotate - Filter Effect Knob</description>
+                <description>FILTER CH1 - rotate - Filter Effect Knob.</description>
                 <status>0xB6</status>
                 <midino>0x37</midino>
                 <options>
@@ -1460,7 +1460,7 @@
             <control>
                 <group>[QuickEffectRack1_[Channel2]]</group>
                 <key>super1</key>
-                <description>FILTER CH2 - rotate - Filter Effect Knob</description>
+                <description>FILTER CH2 - rotate - Filter Effect Knob.</description>
                 <status>0xB6</status>
                 <midino>0x38</midino>
                 <options>
@@ -1859,8 +1859,8 @@
             </control>
             <control>
                 <group>[Channel1]</group>
-                <key>beatloop_0.25_toggle</key>
-                <description>PAD 1 (DECK1) BEAT LOOP MODE - press - 1/4 Beatloop</description>
+                <key>beatlooproll_0.125_activate</key>
+                <description>MIDI Learned from 20 messages.</description>
                 <status>0x97</status>
                 <midino>0x60</midino>
                 <options>
@@ -1869,8 +1869,8 @@
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>beatloop_0.25_toggle</key>
-                <description>PAD 1 (DECK2) BEAT LOOP MODE - press - 1/4 Beatloop</description>
+                <key>beatlooproll_0.125_activate</key>
+                <description>MIDI Learned from 2 messages.</description>
                 <status>0x99</status>
                 <midino>0x60</midino>
                 <options>
@@ -1879,8 +1879,8 @@
             </control>
             <control>
                 <group>[Channel1]</group>
-                <key>beatloop_0.5_toggle</key>
-                <description>PAD 2 (DECK1) BEAT LOOP MODE - press - 1/2 Beatloop</description>
+                <key>beatlooproll_0.25_activate</key>
+                <description>MIDI Learned from 18 messages.</description>
                 <status>0x97</status>
                 <midino>0x61</midino>
                 <options>
@@ -1889,8 +1889,8 @@
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>beatloop_0.5_toggle</key>
-                <description>PAD 2 (DECK2) BEAT LOOP MODE - press - 1/2 Beatloop</description>
+                <key>beatlooproll_0.25_activate</key>
+                <description>MIDI Learned from 2 messages.</description>
                 <status>0x99</status>
                 <midino>0x61</midino>
                 <options>
@@ -1899,8 +1899,8 @@
             </control>
             <control>
                 <group>[Channel1]</group>
-                <key>beatloop_1_toggle</key>
-                <description>PAD 3 (DECK1) BEAT LOOP MODE - press - 1/1 Beatloop</description>
+                <key>beatlooproll_0.5_activate</key>
+                <description>MIDI Learned from 4 messages.</description>
                 <status>0x97</status>
                 <midino>0x62</midino>
                 <options>
@@ -1909,8 +1909,8 @@
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>beatloop_1_toggle</key>
-                <description>PAD 3 (DECK2) BEAT LOOP MODE - press - 1/1 Beatloop</description>
+                <key>beatlooproll_0.5_activate</key>
+                <description>MIDI Learned from 2 messages.</description>
                 <status>0x99</status>
                 <midino>0x62</midino>
                 <options>
@@ -1929,8 +1929,8 @@
             </control>
             <control>
                 <group>[Channel1]</group>
-                <key>beatloop_2_toggle</key>
-                <description>PAD 4 (DECK1) BEAT LOOP MODE - press - 2 Beatloop</description>
+                <key>beatlooproll_1_activate</key>
+                <description>MIDI Learned from 2 messages.</description>
                 <status>0x97</status>
                 <midino>0x63</midino>
                 <options>
@@ -1939,8 +1939,8 @@
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>beatloop_2_toggle</key>
-                <description>PAD 4 (DECK2) BEAT LOOP MODE - press - 2 Beatloop</description>
+                <key>beatlooproll_1_activate</key>
+                <description>MIDI Learned from 2 messages.</description>
                 <status>0x99</status>
                 <midino>0x63</midino>
                 <options>
