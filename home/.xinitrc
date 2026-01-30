@@ -2,18 +2,13 @@
 
 openbox &
 
-deskflow-client --daemon --restart --enable-crypto --tls-cert ~/.config/Deskflow/tls/deskflow.pem 192.168.1.96
+REMOTE_DEBUG_HOST=192.168.1.96
 
-# Reset usb bus to ensure flx4 is recognized before mixxx starts
-sudo uhubctl -l 2 -a 2
-
-# Give the controller time to come back online post reset
-# TODO: Replace with polling loop on lsusb output
-sleep 3
+deskflow-client --daemon --restart "$REMOTE_DEBUG_HOST"
 
 while [ 1 ]; do
-  /usr/bin/mixxx 2>&1 > ~/mixxx.log
+  /usr/bin/mixxx
   echo "Mixxx has exited, restarting..."
-  sleep 5
+  sleep 3
   killall mixxx
 done
