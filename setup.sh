@@ -7,8 +7,14 @@ BOOT_CMDLINE="$BOOT_CONFIG_DIR/cmdline.txt"
 # install packages
 sudo apt-get install openbox deskflow uhubctl xorg mixxx
 
+pushd `pwd`
+cd /tmp
+wget https://github.com/fasteddy516/pi-usb-automount/releases/latest/download/pi-usb-automount.deb
+sudo dpkg -i pi-usb-automount.deb
+popd
+
 # disable bloat
-sudo systemctl disable NetworkManager
+sudo systemctl disable NetworkManager ModemManager cups avahi-daemon wpa_supplicant cloud-final
 sudo sh -c "echo 'dtoverlay=disable-bt' >> $BOOT_CONFIG"
 sudo sh -c "echo 'disable_splash=1' >> $BOOT_CONFIG"
 # console=serial0,115200 console=tty1 root=PARTUUID=50a1fd48-02 rootfstype=ext4 fsck.repair=yes rootwait cfg80211.ieee80211_regdom=US

@@ -6,6 +6,9 @@ deskflow-client --daemon --restart --enable-crypto --tls-cert ~/.config/Deskflow
 
 # Reset usb bus to ensure flx4 is recognized before mixxx starts
 sudo uhubctl -l 2 -a 2
+
+# Give the controller time to come back online post reset
+# TODO: Replace with polling loop on lsusb output
 sleep 3
 
 while [ 1 ]; do
