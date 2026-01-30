@@ -22,11 +22,11 @@ BOOT_CONFIG_DIR=/boot/firmware
 BOOT_CONFIG="$BOOT_CONFIG_DIR/config.txt"
 BOOT_CMDLINE="$BOOT_CONFIG_DIR/cmdline.txt"
 systemctl disable NetworkManager ModemManager avahi-daemon wpa_supplicant cloud-final
-write_if_missing "echo 'dtoverlay=disable-bt'" "$BOOT_CONFIG"
+write_if_missing "dtoverlay=disable-bt" "$BOOT_CONFIG"
 append_if_missing "fastboot loglevel=3" "$BOOT_CMDLINE"
 
 # Create system on / off button
-write_if_missing "echo 'dtoverlay=gpio-shutdown,gpio_pin=17,active_low=1,gpio_pull=up,debounce=1000'" "$BOOT_CONFIG"
+write_if_missing "dtoverlay=gpio-shutdown,gpio_pin=17,active_low=1,gpio_pull=up,debounce=1000" "$BOOT_CONFIG"
 
 # autologin to tty1
 SYSTEMD_DIR=/etc/systemd/system
@@ -39,7 +39,8 @@ write_if_missing "ExecStart=-/sbin/agetty --autologin alyxx --noclear %I \$TERM"
 
 # Link configs
 HOME_CONFIGS_DIR="$(pwd)/../home"
-for path in "$(ls -a1 \"$HOME_CONFIGS_DIR\")"; do
+for path in "$(ls -a1 "$HOME_CONFIGS_DIR")"; do
+  echo "Linking file ${path}..."
   test -f "${HOME}/${path}" && rm "${HOME}/${path}"
   test -d "${HOME}/${path}" && rm -rf "${HOME}/${path}"
   ln -s "${HOME_CONFIGS_DIR}/${path}" "${HOME}/${path}"
