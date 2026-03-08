@@ -39,7 +39,7 @@ BOOT_CONFIG="$BOOT_CONFIG_DIR/config.txt"
 BOOT_CMDLINE="$BOOT_CONFIG_DIR/cmdline.txt"
 
 # always disable these — not needed in any mode
-systemctl disable ModemManager avahi-daemon cloud-final
+systemctl disable lightdm display-manager ModemManager avahi-daemon cloud-final
 
 # disable network services in prod only
 if [ "$DEV_MODE" -eq 0 ]; then
