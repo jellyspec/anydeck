@@ -1,10 +1,21 @@
 #!/bin/bash
 
+# Usage: sudo ./setup.sh [--dev]
+#
+# Default (prod) mode: disables all network services for a fully standalone appliance.
+# --dev mode: keeps NetworkManager and wpa_supplicant enabled so WiFi works for
+#   deskflow remote debugging. Writes ~/.deckshark-dev so .xinitrc starts deskflow-client.
+
 . functions
 
 if [ "$(id -u)" -ne 0 ]; then
   echo "Please re-run this as root." >&2
   exit
+fi
+
+DEV_MODE=0
+if [ "${1}" = "--dev" ]; then
+  DEV_MODE=1
 fi
 
 CURRENT_USER="${SUDO_USER:-$(whoami)}"
@@ -27,7 +38,21 @@ BOOT_CONFIG_DIR=/boot/firmware
 BOOT_CONFIG="$BOOT_CONFIG_DIR/config.txt"
 BOOT_CMDLINE="$BOOT_CONFIG_DIR/cmdline.txt"
 
-systemctl disable NetworkManager ModemManager avahi-daemon wpa_supplicant cloud-final
+# always disable these — not needed in any mode
+systemctl disable ModemManager avahi-daemon cloud-final
+
+# disable network services in prod only
+if [ "$DEV_MODE" -eq 0 ]; then
+  systemctl disable NetworkManager wpa_supplicant
+fi
+
+# write or remove dev mode marker for .xinitrc
+DEV_MARKER="/home/${CURRENT_USER}/.deckshark-dev"
+if [ "$DEV_MODE" -eq 1 ]; then
+  touch "$DEV_MARKER"
+else
+  rm -f "$DEV_MARKER"
+fi
 
 write_if_missing "dtoverlay=disable-bt" "$BOOT_CONFIG"
 append_if_missing "fastboot loglevel=3" "$BOOT_CMDLINE"
