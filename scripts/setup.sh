@@ -39,7 +39,7 @@ write_if_missing 'ExecStart=-/sbin/agetty --autologin alyxx --noclear %I \$TERM'
 
 # Link configs
 HOME_CONFIGS_DIR="$(pwd)/../home"
-TRUE_HOME="/home/alyxx"
+TRUE_HOME="/home/${USER}"
 for path in $(ls -a1 "$HOME_CONFIGS_DIR" | sed 1,2d); do
   echo "Linking file ${path}..."
   test -f "${TRUE_HOME}/${path}" && rm "${TRUE_HOME}/${path}"
